@@ -110,3 +110,9 @@ Console logs with translations and word analysis
 
 This project uses environment variables for credentials.
 .env is ignored via .gitignore.
+
+👨‍💻 Candidate
+
+Harsh Vaishnav
+BrowserStack – Customer Engineering Assignment
+2026
