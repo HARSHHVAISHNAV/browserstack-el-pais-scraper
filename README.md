@@ -1,4 +1,4 @@
-# 🌐 El País Opinion Scraper  
+# 🌐 BrowserStack Scraper  
 ### Selenium Automation + BrowserStack Parallel Testing
 
 **BrowserStack Customer Engineering Assignment — Round 2**
@@ -156,5 +156,7 @@ Run on BrowserStack in parallel
 ## 👨‍💻 Candidate
 
 Harsh Vaishnav
+
 BrowserStack — Customer Engineering Assignment
+
 February 2026
