@@ -78,25 +78,16 @@ For test stability, mobile runs navigate directly to the Opinion URL rather than
 This ensures consistent cross-browser execution.
 
 🛠 Tech Stack
+
 Category	Tools
 Language	Python
 Automation	Selenium WebDriver 4
 Cloud Testing	BrowserStack Automate
 Translation	deep-translator (Google Translate wrapper)
-Networking	Requests
-Parallel Execution	ThreadPoolExecutor
-📂 Project Structure
-browserstack-el-pais/
-│
-├── article_images/               # Downloaded article images
-├── src/
-│   ├── run_test.py               # Local execution (multi-tab scraping)
-│   ├── browserstack_script.py   # Parallel BrowserStack execution
-│   └── scraper.py               # Scraping + translation + analysis logic
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
+
+
+<img width="660" height="299" alt="image" src="https://github.com/user-attachments/assets/0dc34da2-2af0-4247-a848-4057b67acff4" />
+
 
 ⚙️ Setup Instructions
 1️⃣ Install Dependencies
