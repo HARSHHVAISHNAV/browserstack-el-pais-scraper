@@ -1,7 +1,7 @@
 # 🌐 BrowserStack Scraper  
 ### Selenium Automation + BrowserStack Parallel Testing
 
-**BrowserStack Customer Engineering Assignment — Round 2**
+**BrowserStack Customer Engineering Assignment**
 
 A Python-based Selenium automation project that scrapes articles from the *El País Opinion* section, translates article titles to English, performs text analysis, and executes the workflow across multiple browsers in parallel using BrowserStack.
 
