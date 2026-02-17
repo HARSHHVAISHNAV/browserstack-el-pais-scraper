@@ -89,7 +89,9 @@ Translation	deep-translator (Google Translate wrapper)
 <img width="660" height="299" alt="image" src="https://github.com/user-attachments/assets/0dc34da2-2af0-4247-a848-4057b67acff4" />
 
 
+
 ⚙️ Setup Instructions
+
 1️⃣ Install Dependencies
 pip install -r requirements.txt
 
@@ -117,6 +119,7 @@ python src/browserstack_script.py
 
 📊 Example Output
 Repeated Words in Translated Headlines:
+
 the = 2
 to = 2
 
