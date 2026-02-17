@@ -1,140 +1,120 @@
-El País Opinion Scraper
-Selenium Automation + BrowserStack Parallel Testing
+# 🌐 El País Opinion Scraper  
+### Selenium Automation + BrowserStack Parallel Testing
 
-BrowserStack Customer Engineering Assignment
+**BrowserStack Customer Engineering Assignment — Round 2**
 
-A Python-based Selenium automation project that scrapes articles from the El País Opinion section, translates article titles to English, performs text analysis, and executes the workflow across multiple browsers in parallel using BrowserStack.
+A Python-based Selenium automation project that scrapes articles from the *El País Opinion* section, translates article titles to English, performs text analysis, and executes the workflow across multiple browsers in parallel using BrowserStack.
 
-Project Overview
+---
+
+## 📋 Project Overview
 
 This project demonstrates an end-to-end automation workflow combining:
 
-Web scraping using Selenium WebDriver
+- Web scraping using Selenium WebDriver  
+- API-based language translation  
+- Text processing and word-frequency analysis  
+- Cross-browser testing on BrowserStack  
+- Parallel execution across desktop and real mobile devices  
+- Secure credential management using environment variables  
 
-API-based language translation
+---
 
-Text processing and word-frequency analysis
+## ✨ Features
 
-Cross-browser testing on BrowserStack
+### Core Functionality
+- Validates website content is in Spanish  
+- Navigates to the El País Opinion section  
+- Scrapes the first **5 opinion articles**
+  - Article title (Spanish)
+  - Full article content
+  - Cover image (if available)  
+- Translates article titles from **Spanish → English**  
+- Identifies repeated words in translated titles  
+- Automatically handles cookie popups  
 
-Parallel test execution across desktop and real mobile devices
+---
 
-Secure credential management using environment variables
+### ⚙️ Technical Highlights
 
-Features
-Core Functionality
-
-Validates that the website content is in Spanish
-
-Navigates to the El País Opinion section
-
-Scrapes the first 5 opinion articles
-
-Title (Spanish)
-
-Full article content
-
-Cover image (if available)
-
-Translates article titles from Spanish → English
-
-Identifies repeated words in translated titles
-
-Automatically handles cookie consent popups
-
-Technical Highlights
-
-Full Article Extraction
+**Full Article Extraction**  
 Articles are opened individually to capture complete content instead of preview snippets.
 
-Parallel BrowserStack Execution
+**Parallel BrowserStack Execution**  
 Runs across 5 browsers/devices simultaneously using multithreading.
 
-Secure Credential Management
-All secrets are stored in .env and never committed to Git.
+**Secure Credential Management**  
+All credentials are stored in `.env` and never committed to Git.
 
-Cross-Platform Automation Strategy
+**Cross-Platform Automation Strategy**  
 Different navigation strategies for desktop vs mobile browsers ensure stability.
 
-Quick Start
-Prerequisites
+---
 
-Python 3.8+
+## 🚀 Quick Start
 
-Google Chrome installed
-
-BrowserStack account
+### Prerequisites
+- Python 3.8+
+- Google Chrome installed
+- BrowserStack account
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
-
-Environment Setup
-
+🔐 Environment Setup
 Create a .env file in the project root:
 
 BROWSERSTACK_USERNAME=your_username
 BROWSERSTACK_ACCESS_KEY=your_access_key
-
-
 The .env file is excluded from Git via .gitignore.
 
-Running the Tests
+▶️ Running the Tests
 Local Execution
-
-Runs the scraper in Chrome and opens each article in a new tab.
+Runs the scraper locally in Chrome and opens each article in a new tab.
 
 python src/run_test.py
-
-BrowserStack Execution
-
-Runs the workflow in parallel across 5 environments:
+BrowserStack Execution (Parallel)
+Runs the workflow across 5 browsers/devices simultaneously.
 
 python src/browserstack_script.py
 
-Project Structure
+```
+
+## 🚀 Project Structure
+```bash
 browserstack-el-pais/
-├── article_images/              # Downloaded article images
+├── article_images/              
 ├── src/
-│   ├── browserstack_script.py   # BrowserStack parallel execution
-│   ├── run_test.py              # Local Selenium runner
-│   └── scraper.py               # Scraping + translation + analysis
-├── .env                         # Environment variables (ignored)
-├── .gitignore
-├── requirements.txt
-└── README.md
+│  _{\*
+│   ├── browserstack_script.py   
+│   ├── run_test.py              
+│   └── scraper.py               
+├── .env                         
+├── .gitignore                   
+├── requirements.txt             
+└── README.md          
+```
 
-Test Results
-Local Execution
+## ☁️ BrowserStack Test Environments
 
-Articles scraped: 5/5
+| Browser | Platform           | Status   |
+| ------- | ------------------ | -------- |
+| Chrome  | Windows 10         | ✅ Passed |
+| Firefox | macOS Monterey     | ✅ Passed |
+| Safari  | macOS Ventura      | ✅ Passed |
+| Chrome  | Samsung Galaxy S21 | ✅ Passed |
+| Safari  | iPhone 13          | ✅ Passed |
 
-Images downloaded: 5/5
 
-Translation: Successful
-
-Word analysis: Successful
-
-BrowserStack Cross-Browser Execution
-
-Executed across 5 parallel environments:
-
-Browser	Platform	Status
-Chrome	Windows 10	Passed
-Firefox	macOS Monterey	Passed
-Safari	macOS Ventura	Passed
-Chrome	Samsung Galaxy S21	Passed
-Safari	iPhone 13	Passed
-
-Overall Result: 5/5 Environments Passed
-
-Word Analysis Output (Example)
+📊 Example Output
 Repeated Words in Translated Titles:
+
 the = 2
 to = 2
 
-Key Technologies
 
+## 🛠 Tech Stack
 Selenium WebDriver 4
 
 BrowserStack Automate
@@ -147,21 +127,7 @@ Requests
 
 ThreadPoolExecutor (parallel execution)
 
-Performance Optimizations
-Parallel Execution
-
-Five BrowserStack sessions run simultaneously, reducing total execution time.
-
-Stable Cross-Browser Strategy
-
-Separate automation flows for local debugging and cloud execution improve reliability.
-
-Efficient Scraping Workflow
-
-Minimal page reloads and optimized waits ensure faster execution.
-
-Security Best Practices
-
+## 🔒 Securtiy Best Practices
 No hardcoded credentials
 
 Environment variables for secrets
@@ -170,11 +136,8 @@ Environment variables for secrets
 
 Safe API usage
 
-Assignment Checklist
-
-All required tasks have been completed:
-
-Open El País website in Spanish
+## 📝 Assignment checklist
+Visit El País website in Spanish
 
 Navigate to Opinion section
 
@@ -188,11 +151,9 @@ Analyze repeated words
 
 Run locally
 
-Run on BrowserStack
+Run on BrowserStack in parallel
 
-Execute in parallel across multiple browsers
-
-Candidate
+## 👨‍💻 Candidate
 
 Harsh Vaishnav
 BrowserStack — Customer Engineering Assignment
