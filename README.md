@@ -1,118 +1,199 @@
-🌐 El País Opinion Scraper (Selenium + BrowserStack)
+El País Opinion Scraper
+Selenium Automation + BrowserStack Parallel Testing
 
-Automation script that scrapes the latest opinion articles from El País, translates the headlines to English and runs the workflow across 5 browsers in parallel using BrowserStack.
+BrowserStack Customer Engineering Assignment
 
-📸 What this project does
+A Python-based Selenium automation project that scrapes articles from the El País Opinion section, translates article titles to English, performs text analysis, and executes the workflow across multiple browsers in parallel using BrowserStack.
 
-The script performs a complete end-to-end automation flow:
+Project Overview
 
-Opens the El País website in Spanish
+This project demonstrates an end-to-end automation workflow combining:
 
-Navigates to the Opinion section
+Web scraping using Selenium WebDriver
 
-Collects the first 5 articles
+API-based language translation
 
-Extracts:
+Text processing and word-frequency analysis
 
-Article title (Spanish)
+Cross-browser testing on BrowserStack
+
+Parallel test execution across desktop and real mobile devices
+
+Secure credential management using environment variables
+
+Features
+Core Functionality
+
+Validates that the website content is in Spanish
+
+Navigates to the El País Opinion section
+
+Scrapes the first 5 opinion articles
+
+Title (Spanish)
 
 Full article content
 
 Cover image (if available)
 
-Translates titles → English
+Translates article titles from Spanish → English
 
-Finds repeated words in translated titles
+Identifies repeated words in translated titles
 
-Runs the workflow locally and on BrowserStack cloud browsers
+Automatically handles cookie consent popups
 
-⚡ Demo Flow
-El País → Opinion → 5 Articles → Download Images → Translate Titles → Analyze Words
+Technical Highlights
 
+Full Article Extraction
+Articles are opened individually to capture complete content instead of preview snippets.
 
-Example output:
+Parallel BrowserStack Execution
+Runs across 5 browsers/devices simultaneously using multithreading.
 
-Repeated Words in Translated Headlines:
-the = 2
-to = 2
+Secure Credential Management
+All secrets are stored in .env and never committed to Git.
 
-🛠 Tech Stack
+Cross-Platform Automation Strategy
+Different navigation strategies for desktop vs mobile browsers ensure stability.
 
-Python
+Quick Start
+Prerequisites
 
-Selenium WebDriver
+Python 3.8+
 
-BrowserStack Automate
+Google Chrome installed
 
-deep-translator
+BrowserStack account
 
-Requests
+Install dependencies:
 
-ThreadPoolExecutor (parallel runs)
-
-📂 Project Structure
-.
-├── src/
-│   ├── browserstack_script.py   # Runs tests on 5 browsers in parallel
-│   ├── run_test.py              # Local Chrome execution
-│   └── scraper.py               # Scraping + translation + analysis
-│
-├── article_images/              # Downloaded article images
-├── requirements.txt
-└── README.md
-
-🚀 Setup
-1️⃣ Clone repo
-git clone "https://github.com/HARSHHVAISHNAV/browserstack-el-pais-scraper.git"
-cd browserstack-el-pais-scraper
-
-2️⃣ Install dependencies
 pip install -r requirements.txt
 
-3️⃣ Add BrowserStack credentials
+Environment Setup
 
 Create a .env file in the project root:
 
 BROWSERSTACK_USERNAME=your_username
 BROWSERSTACK_ACCESS_KEY=your_access_key
 
-▶️ Run Locally
 
-Runs the scraper in Chrome and opens articles in new tabs.
+The .env file is excluded from Git via .gitignore.
+
+Running the Tests
+Local Execution
+
+Runs the scraper in Chrome and opens each article in a new tab.
 
 python src/run_test.py
 
-☁️ Run on BrowserStack (Parallel)
+BrowserStack Execution
 
-Executes the workflow across:
-
-Chrome — Windows 10
-
-Firefox — macOS
-
-Safari — macOS
-
-Chrome — Samsung Galaxy S21
-
-Safari — iPhone 13
+Runs the workflow in parallel across 5 environments:
 
 python src/browserstack_script.py
 
-📦 Output
+Project Structure
+browserstack-el-pais/
+├── article_images/              # Downloaded article images
+├── src/
+│   ├── browserstack_script.py   # BrowserStack parallel execution
+│   ├── run_test.py              # Local Selenium runner
+│   └── scraper.py               # Scraping + translation + analysis
+├── .env                         # Environment variables (ignored)
+├── .gitignore
+├── requirements.txt
+└── README.md
 
-After execution you will find:
+Test Results
+Local Execution
 
-Downloaded article images → article_images/
+Articles scraped: 5/5
 
-Console logs with translations and word analysis
+Images downloaded: 5/5
 
-🔐 Environment Variables
+Translation: Successful
 
-This project uses environment variables for credentials.
-.env is ignored via .gitignore.
+Word analysis: Successful
 
-👨‍💻 Candidate
+BrowserStack Cross-Browser Execution
+
+Executed across 5 parallel environments:
+
+Browser	Platform	Status
+Chrome	Windows 10	Passed
+Firefox	macOS Monterey	Passed
+Safari	macOS Ventura	Passed
+Chrome	Samsung Galaxy S21	Passed
+Safari	iPhone 13	Passed
+
+Overall Result: 5/5 Environments Passed
+
+Word Analysis Output (Example)
+Repeated Words in Translated Titles:
+the = 2
+to = 2
+
+Key Technologies
+
+Selenium WebDriver 4
+
+BrowserStack Automate
+
+Python
+
+deep-translator (Google Translate wrapper)
+
+Requests
+
+ThreadPoolExecutor (parallel execution)
+
+Performance Optimizations
+Parallel Execution
+
+Five BrowserStack sessions run simultaneously, reducing total execution time.
+
+Stable Cross-Browser Strategy
+
+Separate automation flows for local debugging and cloud execution improve reliability.
+
+Efficient Scraping Workflow
+
+Minimal page reloads and optimized waits ensure faster execution.
+
+Security Best Practices
+
+No hardcoded credentials
+
+Environment variables for secrets
+
+.env excluded from version control
+
+Safe API usage
+
+Assignment Checklist
+
+All required tasks have been completed:
+
+Open El País website in Spanish
+
+Navigate to Opinion section
+
+Scrape first 5 articles
+
+Download cover images
+
+Translate titles to English
+
+Analyze repeated words
+
+Run locally
+
+Run on BrowserStack
+
+Execute in parallel across multiple browsers
+
+Candidate
 
 Harsh Vaishnav
-BrowserStack – Customer Engineering Assignment
-2026
+BrowserStack — Customer Engineering Assignment
+February 2026
