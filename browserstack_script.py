@@ -9,6 +9,10 @@ from scraper import (
     translate_titles_rapid_api,
     analyze_repeated_words
 )
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 USERNAME = os.environ.get('BROWSERSTACK_USERNAME')
 ACCESS_KEY = os.environ.get('BROWSERSTACK_ACCESS_KEY')
