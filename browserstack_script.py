@@ -157,6 +157,9 @@ def run_test_on_browser(config):
 
         for i in range(len(articles)):
             articles[i]['translated_title'] = translated[i]
+            print(f"\n{browser_name} - Article {i+1}")
+            print(f"Spanish: {articles[i]['title']}")
+            print(f"English: {translated[i]}")
 
         analyze_repeated_words(articles)
 

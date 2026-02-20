@@ -15,6 +15,7 @@ def scrape_first_five_articles(driver):
 
     print("Fetching article URLs...")
 
+    wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)
 
@@ -96,7 +97,7 @@ def scrape_first_five_articles_new_tabs(driver):
     os.makedirs("article_images", exist_ok=True)
 
     print("Fetching article URLs...")
-    
+
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)   
