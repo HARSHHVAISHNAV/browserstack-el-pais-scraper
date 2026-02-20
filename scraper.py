@@ -1,12 +1,12 @@
 import os
-import re
-import requests
-import time
+import re #remove punctuations
+import requests #used to download images from URLs
+import time 
 from collections import Counter
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.by import By # to locate elements like button on the webpage by ID, CSS selector, tag name
+from selenium.webdriver.support.ui import WebDriverWait #smart wait 
+from selenium.webdriver.support import expected_conditions as EC #wait conditions
+from deep_translator import GoogleTranslator
 
 def scrape_first_five_articles(driver):
     wait = WebDriverWait(driver, 15)
@@ -35,9 +35,6 @@ def scrape_first_five_articles(driver):
 
             title = driver.find_element(By.TAG_NAME, "h1").text.strip()
 
-            paragraphs = driver.find_elements(By.CSS_SELECTOR, "article p")
-            content = "\n".join([p.text for p in paragraphs if p.text])
-
             image_path = None
             try:
                 img = driver.find_element(By.CSS_SELECTOR, "article img")
@@ -49,7 +46,6 @@ def scrape_first_five_articles(driver):
 
             articles_data.append({
                 "title": title,
-                "content": content,
                 "image_path": image_path
             })
 
@@ -73,8 +69,7 @@ def download_image(url, article_num):
         return None
 
 
-def translate_titles_rapid_api(titles):
-    from deep_translator import GoogleTranslator
+def translate_titles_google(titles):
     translator = GoogleTranslator(source='es', target='en')
     return [translator.translate(t) for t in titles]
 
@@ -101,15 +96,22 @@ def scrape_first_five_articles_new_tabs(driver):
     os.makedirs("article_images", exist_ok=True)
 
     print("Fetching article URLs...")
-
+    
+    wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(2)
+    time.sleep(2)   
 
-    article_links = wait.until(
-        EC.presence_of_all_elements_located((By.CSS_SELECTOR, "h2.c_t a"))
-    )
 
-    urls = [link.get_attribute("href") for link in article_links[:5]]
+    # Extract URLs using JavaScript (prevents stale element error)
+    urls = driver.execute_script("""
+        let links = document.querySelectorAll('h2.c_t a');
+        let results = [];
+        for (let i = 0; i < Math.min(5, links.length); i++) {
+            results.push(links[i].href);
+        }
+        return results;
+    """)
+
     print(f"Found {len(urls)} articles")
 
     parent_window = driver.current_window_handle
@@ -126,9 +128,6 @@ def scrape_first_five_articles_new_tabs(driver):
 
             title = driver.find_element(By.TAG_NAME, "h1").text.strip()
 
-            paragraphs = driver.find_elements(By.CSS_SELECTOR, "article p")
-            content = "\n".join([p.text for p in paragraphs if p.text])
-
             image_path = None
             try:
                 img = driver.find_element(By.CSS_SELECTOR, "article img")
@@ -140,7 +139,6 @@ def scrape_first_five_articles_new_tabs(driver):
 
             articles_data.append({
                 "title": title,
-                "content": content,
                 "image_path": image_path
             })
 

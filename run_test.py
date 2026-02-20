@@ -6,14 +6,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scraper import (
     scrape_first_five_articles_new_tabs,   # ← updated function name
-    translate_titles_rapid_api,
+    translate_titles_google,
     analyze_repeated_words
 )
+import re
 
 
 def get_driver():
     """Create local Chrome driver"""
-    options = webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions() #create chrome configuration object
     options.add_argument("--start-maximized")
     options.add_argument("--lang=es")
     options.add_experimental_option(
@@ -21,8 +22,8 @@ def get_driver():
     )
 
     driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options
+        service=Service(ChromeDriverManager().install()), #launches chrome 
+        options=options #OUR CONFIGURED OPTIONS
     )
     return driver
 
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         handle_cookies(driver, wait)
 
         # Validate Spanish language
-        import re
+
         body_text = driver.find_element(By.TAG_NAME, "body").text
         assert re.search(r'[ñÑáéíóúÁÉÍÓÚüÜ]', body_text), "Website not in Spanish"
         print(" Spanish language verified")
@@ -82,7 +83,7 @@ if __name__ == "__main__":
         # Translate titles
         print("\n Translating titles...")
         titles_list = [article['title'] for article in articles]
-        translated_titles = translate_titles_rapid_api(titles_list)
+        translated_titles = translate_titles_google(titles_list)
 
         for idx, article in enumerate(articles):
             article['translated_title'] = translated_titles[idx]

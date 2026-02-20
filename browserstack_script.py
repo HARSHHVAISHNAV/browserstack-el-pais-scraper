@@ -6,11 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scraper import (
     scrape_first_five_articles,
-    translate_titles_rapid_api,
+    translate_titles_google,
     analyze_repeated_words
 )
 from dotenv import load_dotenv
-import os
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.safari.options import Options as SafariOptions
 
 load_dotenv()
 
@@ -60,10 +62,7 @@ def is_mobile(config):
 
 
 def create_browserstack_driver(config):
-    from selenium.webdriver.chrome.options import Options as ChromeOptions
-    from selenium.webdriver.firefox.options import Options as FirefoxOptions
-    from selenium.webdriver.safari.options import Options as SafariOptions
-
+    
     browser = config.get('browser', 'chrome').lower()
 
     if browser == 'chrome':
@@ -154,7 +153,7 @@ def run_test_on_browser(config):
         articles = scrape_first_five_articles(driver)
 
         titles = [a['title'] for a in articles]
-        translated = translate_titles_rapid_api(titles)
+        translated = translate_titles_google(titles)
 
         for i in range(len(articles)):
             articles[i]['translated_title'] = translated[i]
