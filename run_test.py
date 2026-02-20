@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scraper import (
-    scrape_first_five_articles_new_tabs,   # ← updated function name
+    scrape_first_five_articles,   # ← updated function name
     translate_titles_google,
     analyze_repeated_words
 )
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         print(" Opinion section loaded")
 
         # Scrape articles (new scraper logic)
-        articles = scrape_first_five_articles_new_tabs(driver)
+        articles = scrape_first_five_articles(driver)
 
         # Translate titles
         print("\n Translating titles...")
